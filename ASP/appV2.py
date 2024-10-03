@@ -329,6 +329,9 @@ def alignment(mp4, txt, language, start=0, stop=0):
     txt_to_lab(txt_path, lab_path)
     progress_bar.progress(50)
 
+    # Initialize source_lang with a default value
+    source_lang = 'Latin'  # Default for English
+
     if language == 'English':
         textgrid_content = english(folder, textgrid_path)
     elif language == 'Tamil':
@@ -367,7 +370,7 @@ def alignment(mp4, txt, language, start=0, stop=0):
 
     transliterate_srt(alignedsrt_path, trans_srt_path, source_lang)
 
-    combine_srt_files(alignedsrt_path,trans_srt_path, combined_file)
+    combine_srt_files(alignedsrt_path, trans_srt_path, combined_file)
 
     files_to_add = [alignedsrt_path, trans_srt_path, combined_file]
     create_or_empty_zip(archived, files_to_add)
